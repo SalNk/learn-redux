@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+// import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { answer, sendQuestion } from './redux';
+import Parent from './components/Parent';
 
 function App() {
+  const dispatch = useDispatch()
+  const _answer = useSelector(answer)
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <header className="App-header" style={{ marginBottom: '100px' }}>
+        <h1>APP</h1>
+        <p>Réponse de l'enfant :  {_answer} </p>
+        <button
+          onClick={() => dispatch(sendQuestion("T'as vu mon message"))}
         >
-          Learn React
-        </a>
+          Message à l'enfant
+        </button>
       </header>
+      <Parent />
     </div>
   );
 }
